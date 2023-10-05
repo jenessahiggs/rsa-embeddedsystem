@@ -1,31 +1,30 @@
 # Montgomery Modular Multiplication algorithm implemented in ARM Assembly
 
-OpenSSL is used as the base source code to insert this optimized ARM Assembly implementation of the Montgomery Modular Multiplication algorithm.
+OpenSSL is used as the source code to insert this optimized ARM Assembly implementation of the Montgomery Modular Multiplication algorithm.
 
 The OpenSSL RSA cryptographic algorithm (which uses the MMM algorithm) is used to measure the performance of this MMM implementation and to compare it against the ARM Assembly and C code implementations that are included with OpenSSL.
 
 ## Building and Running
 
-There is one script that builds and runs a speed test of RSA cryotographic operations.
+speed_test.sh is a script file that builds and runs a speed test of RSA cryotographic operations.
 ```
 ./speed_test.sh
 ```
 
-This script can be run in one of two kinds of environments:
-* An Unix machine that OpenSSL supports with a real ARMv4 or later processor.
-* Any kind of machine with a bash shell and Docker virtualization software. Docker will emulate the ARM processor.
-
-The `speed_test.sh` script will on its first run do the following:
-* Download OpenSSL 3.1.1 source code (the latest version at the time) .
-* Patch the source code to include this MMM ARM Assembly implementation.
-* Configure and build the OpenSSL libraries and the command line tools.
-
-Then, and on all subsequent runs it will run the OpenSSL build-in RSA speed tests once for each of the following MMM algorithm implementations:
-* This MMM ARM Assembly code.
-* Open SSL OpenSSL's default ARM Assembly code.
-* OpenSSL's default C code.
-
+This script can be run in the following environments:
+* A Unix machine supported by OpenSSL and a real ARM (v4 or later) processor
+* Any machine with a bash shell and Docker virtualization software (Docker will emulate the ARM processor)
 The Docker emulation environment is included for convenience so that a real ARM machine is not required. However, the performance results in the Docker emulated environment may not be representative of that of a real ARM processor.
+
+During the first run, speed_test.sh will:
+* Download OpenSSL 3.1.1 source code (the latest version at the time of this project)
+* Patch the source code to include this MMM ARM Assembly implementation
+* Configure and build the OpenSSL libraries and the command line tools
+
+During all subsequent runs, speed_test.sh will run the RSA speed tests built into OpenSSL once for each of the following MMM algorithm implementations:
+* This MMM ARM Assembly code
+* OpenSSL's default ARM Assembly code
+* OpenSSL's default C code
 
 Here is a sample run on a Raspberry Pi Zero W with a 1GHz, single-core ARM CPU.
 ```
