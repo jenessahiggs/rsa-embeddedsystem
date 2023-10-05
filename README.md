@@ -26,6 +26,7 @@ During all subsequent runs, speed_test.sh will run the RSA speed tests built int
 * OpenSSL's default ARM Assembly code
 * OpenSSL's default C code
 
+## Sample Output
 Here is a sample run on a Raspberry Pi Zero W with a 1GHz, single-core ARM CPU.
 ```
 $ ./speed_test.sh
